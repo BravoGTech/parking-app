@@ -7,7 +7,7 @@ export const LoginPage = () => {
     <Container
       bgGradient={"linear-gradient(139deg, #5E5D7B 31%, #80506F 100%)"}
       maxW="10xl"
-      h={{ base: "100%", md: "100vh" }}
+      h={{ base: "100vh", md: "100vh" }}
       p="2rem 1rem"
     >
       <Flex flexDir={"column"} justify="center" align={"center"}>
@@ -22,8 +22,8 @@ export const LoginPage = () => {
             <Heading
               color="white"
               pos="absolute"
-              top={{ base: "30%", md: "30%" }}
-              right={{base: "30px",md:"30%"}}
+              top={{ base: "10%", md: "30%" }}
+              right={{base: "50px",md:"30%"}}
               fontSize={"4xl"}
               textShadow={"4px 3px 0px #7A7A7A"}
             >
