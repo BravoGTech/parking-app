@@ -51,7 +51,7 @@ export const theme = extendTheme({
     },
   },
   fonts: {
-    heading: "Inter",
+    heading: "Montserrat",
     body: "Inter",
   },
   fontSizes: {

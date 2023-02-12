@@ -1,14 +1,10 @@
-import { Heading } from "@chakra-ui/react";
+import { LoginPage } from "./pages/Login";
 
 function App() {
   return (
-    <div>
-      <Heading size={"4xl"} lineHeight="4xl">
-        hello world
-      </Heading>
-      <Heading>hello world</Heading>
-      <Heading>hello world</Heading>
-    </div>
+    <>
+      <LoginPage />
+    </>
   );
 }
 
