@@ -19,7 +19,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { useContext, useState } from "react";
-import { AuthContext } from "../../../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export interface ILoginData {
   username: string;

@@ -1,7 +1,7 @@
 import { Box, Container, Flex, Heading, Image } from "@chakra-ui/react";
-import loginBg from "../../assets/loginbg.png";
 import journey from "../../assets/1.png";
-import { LoginForm } from "./LoginForm";
+import { LoginForm } from "../../components/LoginForm";
+
 export const LoginPage = () => {
   return (
     <Container
@@ -23,7 +23,7 @@ export const LoginPage = () => {
               color="white"
               pos="absolute"
               top={{ base: "10%", md: "30%" }}
-              right={{base: "50px",md:"30%"}}
+              right={{ base: "50px", md: "30%" }}
               fontSize={"4xl"}
               textShadow={"4px 3px 0px #7A7A7A"}
             >
@@ -35,7 +35,7 @@ export const LoginPage = () => {
             mt={{ base: "-180px", md: 0 }}
             w={{ base: "100%", md: "80%" }}
             bg="white"
-            align={{base: "flex-start", md: "center"}}
+            align={{ base: "flex-start", md: "center" }}
             rounded={"20px"}
             zIndex="10"
           >
