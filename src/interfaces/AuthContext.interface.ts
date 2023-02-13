@@ -1,8 +1,7 @@
-import { ILoginData } from "../pages/Login/LoginForm";
+import { ILoginData } from "../components/LoginForm";
 
 export interface IAuthContext {
   login: (loginData: ILoginData) => Promise<void>;
-  token: string | null;
   isFetching: boolean;
   error: any;
 }
