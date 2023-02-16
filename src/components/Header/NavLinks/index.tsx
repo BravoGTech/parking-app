@@ -93,7 +93,7 @@ export const NavLinks = ({ isOpen, onToggle }: INavLinksProps) => {
         <MenuItem
           onToggle={onToggle}
           isOpen={isOpen}
-          to="workers"
+          to="/admin/worksManagement"
           activeLink={activeLink}
           handleClick={handleClick}
         >
