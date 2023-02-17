@@ -7,9 +7,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Select,
   Spinner,
-  Text,
 } from "@chakra-ui/react";
 import { useContext } from "react";
 import { useQuery } from "react-query";

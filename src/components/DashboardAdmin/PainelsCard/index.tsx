@@ -26,7 +26,8 @@ export const PainelsCard = ({ title, children, to }: IPanelCard) => {
       align={"center"}
       justify="center"
       p="2rem"
-      w="300px"
+      w="250px"
+      h='150px'
       textAlign={"center"}
       size="sx"
       borderRadius={"10px"}

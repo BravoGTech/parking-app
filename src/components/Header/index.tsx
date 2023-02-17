@@ -1,12 +1,4 @@
-import React, { useState } from "react";
-import {
-  Box,
-  Flex,
-  useColorMode,
-  Link,
-  useDisclosure,
-  Slide,
-} from "@chakra-ui/react";
+import { Flex, useDisclosure } from "@chakra-ui/react";
 import { MenuToggle } from "./MenuToggle";
 import { NavLinks } from "./NavLinks";
 
@@ -22,6 +14,8 @@ export const Header = () => {
         color="white"
         flexDir={"column"}
         h="100vh"
+        pos={{ base: "fixed", md: "inherit" }}
+        zIndex="200"
       >
         <MenuToggle isOpen={isOpen} onToggle={onToggle} />
         <NavLinks isOpen={isOpen} onToggle={onToggle} />

@@ -1,5 +1,6 @@
 import {
   Container,
+  Divider,
   Flex,
   Heading,
   Spinner,
@@ -45,17 +46,31 @@ export const WorkersManagement = () => {
         display="flex"
         flexDir={"column"}
         alignItems="center"
+        ml={{ base: "3rem", md: 0 }}
       >
-        <Heading mt="2rem" size={"3xl"}>
+        <Heading mt="2rem" size={"2xl"} textAlign="center">
           Gerenciamento de Funcionários
         </Heading>
-        <Flex flexDir={"column"}>
+        <Flex
+          flexDir={"column"}
+          gap="2rem"
+          align={"center"}
+          justify="center"
+          mt="2rem"
+        >
           <PainelsCard title="Numero de Funcionários">
             <Heading size={"sm"}>
               {isFetching ? <Spinner /> : data.length - 1} Funcionários
             </Heading>
           </PainelsCard>
-          <Flex wrap={"wrap"}>
+          <Divider />
+          <Flex
+            flexDir={{ base: "row", md: "row" }}
+            wrap={{ base: "wrap" }}
+            gap="2rem"
+            align={"center"}
+            justify="center"
+          >
             <Painel
               onOpen={onOpenRegister}
               icon={FiUserPlus}

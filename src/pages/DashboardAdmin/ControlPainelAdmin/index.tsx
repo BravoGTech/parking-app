@@ -17,7 +17,7 @@ export const ControlPainelAdminPage = () => {
     <Flex>
       <Header />
       <Container
-        maxW={"8xl"}
+        maxW={"5xl"}
         display="flex"
         flexDir={"column"}
         alignItems="center"

@@ -5,29 +5,25 @@ import {
   FormHelperText,
   FormLabel,
   Input,
-  InputGroup,
-  InputRightElement,
   ModalFooter,
   Spinner,
   VStack,
 } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import {
   IUpdateFormProps,
   IUpdateUserData,
 } from "../../../interfaces/UsersContext.interfaces";
-import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
+
 import { UsersContext } from "../../../contexts/UsersContext";
 import { useQuery } from "react-query";
 import { api } from "../../../services/api";
 
-export const EditUserForm = ({ userId }: IUpdateFormProps) => {
-  const {} = useContext(UsersContext);
-  const [showPassword, setShowPassword] = useState(false);
-
+export const EditUserForm = ({ userId, onClose }: IUpdateFormProps) => {
+  const { updateUser } = useContext(UsersContext);
   const { data, isFetching } = useQuery([userId], async () => {
     const token = localStorage.getItem("@Parking:Token");
     api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -35,8 +31,6 @@ export const EditUserForm = ({ userId }: IUpdateFormProps) => {
     const response = await api.get(`users/${userId}/`);
     return response.data;
   });
-
-  console.log(data);
 
   const registerSchema = z.object({
     first_name: z
@@ -76,7 +70,7 @@ export const EditUserForm = ({ userId }: IUpdateFormProps) => {
   });
 
   const onSubmit = (data: IUpdateUserData) => {
-    console.log(data);
+    updateUser({ data, onClose, userId });
   };
 
   return (
@@ -89,6 +83,7 @@ export const EditUserForm = ({ userId }: IUpdateFormProps) => {
             errorBorderColor={errors.first_name && "crimson"}
             focusBorderColor={errors.first_name && "crimson"}
             placeholder="Insira seu nome"
+            defaultValue={data.first_name}
             {...register("first_name")}
           />
           {!!errors.first_name && (
@@ -102,6 +97,7 @@ export const EditUserForm = ({ userId }: IUpdateFormProps) => {
             errorBorderColor={errors.last_name && "crimson"}
             focusBorderColor={errors.last_name && "crimson"}
             placeholder="Insira seu sobrenome"
+            defaultValue={data.last_name}
             {...register("last_name")}
           />
           {!!errors.last_name && (
@@ -115,6 +111,7 @@ export const EditUserForm = ({ userId }: IUpdateFormProps) => {
             errorBorderColor={errors.email && "crimson"}
             focusBorderColor={errors.email && "crimson"}
             placeholder="Insira o seu email"
+            defaultValue={data.email}
             {...register("email")}
           />
           {!!errors.email ? (
@@ -123,45 +120,9 @@ export const EditUserForm = ({ userId }: IUpdateFormProps) => {
             <FormHelperText>email@email.com</FormHelperText>
           )}
         </FormControl>
-        <FormControl isInvalid={!!errors.username}>
-          <FormLabel>Username</FormLabel>
-          <Input
-            isInvalid
-            errorBorderColor={errors.username && "crimson"}
-            focusBorderColor={errors.username && "crimson"}
-            placeholder="Insira o nome de usuário"
-            {...register("username")}
-          />
-          {!!errors.username && (
-            <FormErrorMessage>{errors.username.message}</FormErrorMessage>
-          )}
-        </FormControl>
-        <FormControl isInvalid={!!errors.password}>
-          <FormLabel>Senha</FormLabel>
-          <InputGroup>
-            <Input
-              isInvalid
-              errorBorderColor={errors.password && "crimson"}
-              focusBorderColor={errors.password && "crimson"}
-              placeholder="Insira sua senha"
-              type={showPassword ? "text" : "password"}
-              {...register("password")}
-            />
-            <InputRightElement
-              cursor="pointer"
-              children={
-                showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />
-              }
-              onClick={() => setShowPassword(!showPassword)}
-            />
-          </InputGroup>
-          {!!errors.password && (
-            <FormErrorMessage>{errors.password.message}</FormErrorMessage>
-          )}
-        </FormControl>
         <ModalFooter>
           <Button type="submit" colorScheme="blue">
-            {isFetching ? <Spinner /> : "Cadastrar"}
+            {isFetching ? <Spinner /> : "Atualizar"}
           </Button>
         </ModalFooter>
       </VStack>

@@ -22,7 +22,7 @@ import { EditUserForm } from "../../Forms/EditUserForm";
 export const EditUserModal = ({ isOpen, onClose }: IUserModalProps) => {
   const { data, isFetching } = useContext(UsersContext);
   const [showForm, setShowForm] = useState(false);
-  const [userId, setUserId] = useState<string>();
+  const [userId, setUserId] = useState<string>("default");
 
   const handleForm = (id: string) => {
     if (id !== "default") {
@@ -58,13 +58,10 @@ export const EditUserModal = ({ isOpen, onClose }: IUserModalProps) => {
           {showForm && userId && (
             <>
               <Divider />
-              <EditUserForm userId={userId} />
+              <EditUserForm userId={userId} onClose={onClose} />
             </>
           )}
         </ModalBody>
-        <ModalFooter>
-          <Button colorScheme="blue">Atualizar</Button>
-        </ModalFooter>
       </ModalContent>
     </Modal>
   );
