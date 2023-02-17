@@ -1,11 +1,11 @@
 import { Container, Flex, Heading } from "@chakra-ui/react";
 import { Navigate } from "react-router-dom";
-import { BalancePainel } from "../../components/DashboardAdmin/BalancePainel";
+import { BalancePainel } from "../../../components/DashboardAdmin/BalancePainel";
 
-import { OccupationPainel } from "../../components/DashboardAdmin/OccupationPainel";
-import { PriceByHour } from "../../components/DashboardAdmin/PriceByHourPainel";
+import { OccupationPainel } from "../../../components/DashboardAdmin/OccupationPainel";
+import { PriceByHour } from "../../../components/DashboardAdmin/PriceByHourPainel";
 
-import { Header } from "../../components/Header";
+import { Header } from "../../../components/Header";
 
 export const ControlPainelAdminPage = () => {
   const token = localStorage.getItem("@Parking:Token");
@@ -17,7 +17,7 @@ export const ControlPainelAdminPage = () => {
     <Flex>
       <Header />
       <Container
-        maxW={"8xl"}
+        maxW={"5xl"}
         display="flex"
         flexDir={"column"}
         alignItems="center"

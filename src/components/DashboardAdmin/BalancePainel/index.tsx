@@ -24,7 +24,7 @@ export const BalancePainel = () => {
     filteredData?.forEach((sale) => {
       // Converte a data de venda para um objeto "moment"
       const saleMoment = moment(sale.end_hour);
-      console.log(saleMoment.isSame());
+
       // Adiciona o preço da venda ao total diário, semanal e mensal
       if (dailyTotal !== null && sale.price !== null) {
         dailyTotal += sale.price;

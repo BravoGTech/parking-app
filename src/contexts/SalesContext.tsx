@@ -7,10 +7,10 @@ import { api } from "../services/api";
 export const SalesContext = createContext<ISalesContext>({} as ISalesContext);
 
 export const SalesProvider = ({ children }: IContextProvider) => {
-  const token = localStorage.getItem("@Parking:Token");
   const [priceByHour, setPriceByHour] = useState(5);
 
   const { data, isFetching, error } = useQuery("sales", async () => {
+    const token = localStorage.getItem("@Parking:Token");
     api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     const response = await api.get("sales/");
     return response.data;
