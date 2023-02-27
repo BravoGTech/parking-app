@@ -11,7 +11,7 @@ import {
   Spinner,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { UsersContext } from "../../../contexts/UsersContext";
 import {
   IUserData,
@@ -26,12 +26,6 @@ export const EditUserModal = ({ isOpen, onClose }: IUserModalProps) => {
   const { isOpen: FormOpen, onOpen, onClose: formClose } = useDisclosure();
 
   const [userId, setUserId] = useState<string>("");
-
-  // useEffect(() => {
-  //   if (userId) {
-  //     listUser(userId);
-  //   }
-  // }, [userId]);
 
   return (
     <>

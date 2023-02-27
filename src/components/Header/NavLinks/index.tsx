@@ -66,8 +66,6 @@ export const NavLinks = ({ isOpen, onToggle }: INavLinksProps) => {
         >
           Painel de Controle
         </MenuItem>
-        //Uma seção que permita aos administradores adicionar, excluir ou editar
-        vagas de estacionamento.
         <MenuItem
           onToggle={onToggle}
           isOpen={isOpen}
@@ -77,19 +75,6 @@ export const NavLinks = ({ isOpen, onToggle }: INavLinksProps) => {
         >
           Gerenciamento de Vagas
         </MenuItem>
-        //Uma seção que permita aos administradores ajustar as tarifas de
-        estacionamento de acordo com a demanda ou outros fatores.
-        <MenuItem
-          onToggle={onToggle}
-          isOpen={isOpen}
-          to="/prices"
-          activeLink={activeLink}
-          handleClick={handleClick}
-        >
-          Gerenciamento de Preços
-        </MenuItem>
-        /Uma seção que permita aos administradores gerenciar informações de
-        funcionarios, incluindo a emissão de faturas e pagamentos.
         <MenuItem
           onToggle={onToggle}
           isOpen={isOpen}
@@ -99,6 +84,7 @@ export const NavLinks = ({ isOpen, onToggle }: INavLinksProps) => {
         >
           Gerenciamento de Funcionarios
         </MenuItem>
+        
         //Uma seção que permita aos administradores gerar relatórios detalhados
         sobre o desempenho do estacionamento, incluindo estatísticas de tráfego
         e receita.

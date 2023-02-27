@@ -66,7 +66,7 @@ export const BalancePainel = () => {
   }, [data]);
 
   return (
-    <PainelsCard title="Balanço Mensal" to={"controlPainelAdmin"}>
+    <PainelsCard title="Balanço Mensal">
       <Heading size="md">
         {isFetching ? (
           <Spinner />

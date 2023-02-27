@@ -14,11 +14,11 @@ import { useNavigate } from "react-router-dom";
 export interface IPanelCard {
   title: string;
   children: ReactNode;
-  to?: string;
+  onOpen?: () => void;
   color?: string;
 }
 
-export const PainelsCard = ({ title, children, to, color }: IPanelCard) => {
+export const PainelsCard = ({ title, children, onOpen, color }: IPanelCard) => {
   const navigate = useNavigate();
   return (
     <Card
@@ -39,9 +39,9 @@ export const PainelsCard = ({ title, children, to, color }: IPanelCard) => {
         color === "green" ? "white" : color === "yellow" ? "black" : "black"
       }
     >
-      {to && (
+      {onOpen && (
         <Box
-          onClick={() => navigate(to)}
+          onClick={onOpen}
           pos={"absolute"}
           top="3"
           right="5"

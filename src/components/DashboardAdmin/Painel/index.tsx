@@ -1,7 +1,6 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import { ReactNode } from "react";
 import { IconType } from "react-icons";
-import { BiUserPlus } from "react-icons/bi";
 
 export interface IPainelProps {
   icon: IconType;

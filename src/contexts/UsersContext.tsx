@@ -89,6 +89,7 @@ export const UsersProvider = ({ children }: IContextProvider) => {
     async ({ data, userId, onClose }: IUpdateUserProps) => {
       const token = localStorage.getItem("@Parking:Token");
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      
       return await api.patch(`/users/${userId}/`, data).then((response) => {
         onClose();
         return response.data;
