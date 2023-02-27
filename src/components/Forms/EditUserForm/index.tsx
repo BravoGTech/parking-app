@@ -6,32 +6,21 @@ import {
   FormLabel,
   Input,
   ModalFooter,
-  Spinner,
   VStack,
 } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useContext } from "react";
+
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { UsersContext } from "../../../contexts/UsersContext";
 import {
   IUpdateFormProps,
   IUpdateUserData,
 } from "../../../interfaces/UsersContext.interfaces";
 
-import { UsersContext } from "../../../contexts/UsersContext";
-import { useQuery } from "react-query";
-import { api } from "../../../services/api";
-
-export const EditUserForm = ({ userId, onClose }: IUpdateFormProps) => {
+export const EditUserForm = ({ userData, onClose }: IUpdateFormProps) => {
   const { updateUser } = useContext(UsersContext);
-  const { data, isFetching } = useQuery([userId], async () => {
-    const token = localStorage.getItem("@Parking:Token");
-    api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-
-    const response = await api.get(`users/${userId}/`);
-    return response.data;
-  });
-
   const registerSchema = z.object({
     first_name: z
       .string()
@@ -70,12 +59,20 @@ export const EditUserForm = ({ userId, onClose }: IUpdateFormProps) => {
   });
 
   const onSubmit = (data: IUpdateUserData) => {
-    updateUser({ data, onClose, userId });
+    const userId = userData.id;
+
+    updateUser({ data, userId, onClose });
   };
 
   return (
     <>
-      <VStack as="form" onSubmit={handleSubmit(onSubmit)}>
+      <VStack
+        as="form"
+        onSubmit={handleSubmit(onSubmit)}
+        w="80%"
+        margin="
+          1rem auto"
+      >
         <FormControl isInvalid={!!errors.first_name}>
           <FormLabel>Nome</FormLabel>
           <Input
@@ -83,7 +80,7 @@ export const EditUserForm = ({ userId, onClose }: IUpdateFormProps) => {
             errorBorderColor={errors.first_name && "crimson"}
             focusBorderColor={errors.first_name && "crimson"}
             placeholder="Insira seu nome"
-            defaultValue={data.first_name}
+            defaultValue={userData?.first_name}
             {...register("first_name")}
           />
           {!!errors.first_name && (
@@ -97,7 +94,7 @@ export const EditUserForm = ({ userId, onClose }: IUpdateFormProps) => {
             errorBorderColor={errors.last_name && "crimson"}
             focusBorderColor={errors.last_name && "crimson"}
             placeholder="Insira seu sobrenome"
-            defaultValue={data.last_name}
+            defaultValue={userData?.last_name}
             {...register("last_name")}
           />
           {!!errors.last_name && (
@@ -111,7 +108,7 @@ export const EditUserForm = ({ userId, onClose }: IUpdateFormProps) => {
             errorBorderColor={errors.email && "crimson"}
             focusBorderColor={errors.email && "crimson"}
             placeholder="Insira o seu email"
-            defaultValue={data.email}
+            defaultValue={userData?.email}
             {...register("email")}
           />
           {!!errors.email ? (
@@ -122,7 +119,7 @@ export const EditUserForm = ({ userId, onClose }: IUpdateFormProps) => {
         </FormControl>
         <ModalFooter>
           <Button type="submit" colorScheme="blue">
-            {isFetching ? <Spinner /> : "Atualizar"}
+            Atualizar
           </Button>
         </ModalFooter>
       </VStack>

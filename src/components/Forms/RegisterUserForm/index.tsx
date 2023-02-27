@@ -45,7 +45,7 @@ export const RegisterUserForm = ({ onClose }: IRegisterFormProps) => {
       .string()
       .min(8, "O password deve ter pelo menos 8 caracteres")
       .refine((value) => /[A-Z]/.test(value), {
-        message: "A senah deve ter pelo menos uma letra maiúscula",
+        message: "A senha deve ter pelo menos uma letra maiúscula",
       })
       .refine((value) => /\W/.test(value), {
         message: "A senha deve ter pelo menos um caractere especial",

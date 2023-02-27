@@ -15,9 +15,10 @@ export interface IPanelCard {
   title: string;
   children: ReactNode;
   to?: string;
+  color?: string;
 }
 
-export const PainelsCard = ({ title, children, to }: IPanelCard) => {
+export const PainelsCard = ({ title, children, to, color }: IPanelCard) => {
   const navigate = useNavigate();
   return (
     <Card
@@ -27,12 +28,16 @@ export const PainelsCard = ({ title, children, to }: IPanelCard) => {
       justify="center"
       p="2rem"
       w="250px"
-      h='150px'
+      h="150px"
       textAlign={"center"}
       size="sx"
       borderRadius={"10px"}
       border="1px solid black"
       pos={"relative"}
+      bg={color}
+      color={
+        color === "green" ? "white" : color === "yellow" ? "black" : "black"
+      }
     >
       {to && (
         <Box

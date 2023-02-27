@@ -27,13 +27,13 @@ export const BalancePainel = () => {
 
       // Adiciona o preço da venda ao total diário, semanal e mensal
       if (dailyTotal !== null && sale.price !== null) {
-        dailyTotal += sale.price;
+        dailyTotal += +sale.price;
       }
       if (weeklyTotal !== null && sale.price !== null) {
-        weeklyTotal += sale.price;
+        weeklyTotal += +sale.price;
       }
       if (monthlyTotal !== null && sale.price !== null) {
-        monthlyTotal += sale.price;
+        monthlyTotal += +sale.price;
       }
 
       // Verifica se a data de venda não é de hoje
@@ -67,11 +67,14 @@ export const BalancePainel = () => {
 
   return (
     <PainelsCard title="Balanço Mensal" to={"controlPainelAdmin"}>
-      <Heading>
+      <Heading size="md">
         {isFetching ? (
           <Spinner />
         ) : (
-          `R$ ${monthlyTotal?.toLocaleString("pt-br")}`
+          `${monthlyTotal?.toLocaleString("pt-br", {
+            style: "currency",
+            currency: "BRL",
+          })}`
         )}
       </Heading>
     </PainelsCard>

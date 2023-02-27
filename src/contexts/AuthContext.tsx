@@ -12,18 +12,18 @@ export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 export const AuthProvider = ({ children }: IContextProvider) => {
   const [isFetching, setIsFetching] = useState(false);
   const [error, setError] = useState<any | null>(null);
-  const navigate = useNavigate();
+  const navigate = useNavigate();''
 
   const login = async (loginData: ILoginData) => {
     setIsFetching(true);
     api
-      .post("login/", loginData)
+      .post("/login", loginData)
       .then((response) => {
-        localStorage.setItem("@Parking:Token", response.data.access);
+        localStorage.setItem("@Parking:Token", response.data.token);
         toast.success("Login Realizado com Sucesso");
-        const { is_superuser }: any = jwt_decode(response.data.access);
+        const { isAdmin }: any = jwt_decode(response.data.token);
 
-        is_superuser ? navigate("/controlPainelAdmin") : navigate("/dashboard");
+        isAdmin ? navigate("/controlPainelAdmin") : navigate("/dashboard");
       })
       .catch((error) => {
         toast.error("Usuário ou Senha Inválidos");

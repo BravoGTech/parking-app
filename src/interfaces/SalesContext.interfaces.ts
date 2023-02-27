@@ -2,8 +2,6 @@ export interface ISalesContext {
   data: any;
   isFetching: boolean;
   error: unknown;
-  setPriceByHour: React.Dispatch<React.SetStateAction<number>>
-  priceByHour: number
 }
 
 export interface ISalesData {

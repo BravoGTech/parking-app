@@ -1,10 +1,9 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import { toast } from "react-toastify";
 import { IContextProvider } from "../interfaces/Context.interfaces";
 import {
   IDeleteData,
-  IRegisterUserData,
   IRegisterUserProps,
   IUpdateUserProps,
   IUserDataWithSales,
@@ -23,7 +22,7 @@ export const UsersProvider = ({ children }: IContextProvider) => {
     const token = localStorage.getItem("@Parking:Token");
     api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-    const response = await api.get("users/");
+    const response = await api.get("/users");
     return response.data;
   });
 
@@ -31,7 +30,8 @@ export const UsersProvider = ({ children }: IContextProvider) => {
     async (userId: string): Promise<IUserDataWithSales> => {
       const token = localStorage.getItem("@Parking:Token");
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      return await api.get(`users/${userId}`).then((response) => {
+
+      return await api.get(`/users/${userId}`).then((response) => {
         return response.data;
       });
     },
@@ -50,14 +50,13 @@ export const UsersProvider = ({ children }: IContextProvider) => {
     async ({ data, onClose }: IRegisterUserProps) => {
       const token = localStorage.getItem("@Parking:Token");
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      return await api.post("users/", data).then((response) => {
+      return await api.post("/users", data).then((response) => {
         onClose();
         return response.data;
       });
     },
     {
       onSuccess: (response) => {
-        console.log(response);
         toast.success("Usuário cadastrado com sucesso");
         refetch();
       },
@@ -71,7 +70,7 @@ export const UsersProvider = ({ children }: IContextProvider) => {
     async ({ userId, onClose }: IDeleteData) => {
       const token = localStorage.getItem("@Parking:Token");
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      return await api.delete(`users/${userId}/`).then((response) => {
+      return await api.delete(`/users/${userId}/`).then((response) => {
         onClose();
         return response.data;
       });
@@ -88,10 +87,10 @@ export const UsersProvider = ({ children }: IContextProvider) => {
   );
 
   const { mutate: updateUser } = useMutation(
-    async ({ data, onClose, userId }: IUpdateUserProps) => {
+    async ({ data, userId, onClose }: IUpdateUserProps) => {
       const token = localStorage.getItem("@Parking:Token");
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      return await api.patch(`users/${userId}/`, data).then((response) => {
+      return await api.patch(`/users/${userId}/`, data).then((response) => {
         onClose();
         return response.data;
       });

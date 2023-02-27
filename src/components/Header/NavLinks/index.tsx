@@ -71,7 +71,7 @@ export const NavLinks = ({ isOpen, onToggle }: INavLinksProps) => {
         <MenuItem
           onToggle={onToggle}
           isOpen={isOpen}
-          to="/parking"
+          to="/admin/parkingManagement"
           activeLink={activeLink}
           handleClick={handleClick}
         >

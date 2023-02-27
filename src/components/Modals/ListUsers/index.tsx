@@ -18,14 +18,13 @@ import { useContext, useState } from "react";
 import { UsersContext } from "../../../contexts/UsersContext";
 import {
   IRegisterUserData,
+  IUserData,
   IUserModalProps,
 } from "../../../interfaces/UsersContext.interfaces";
 
 export const ListUsersModal = ({ isOpen, onClose }: IUserModalProps) => {
   const { data, isFetching, userData, listUser } = useContext(UsersContext);
   const [userId, setUserId] = useState<string>("default");
-
-  console.log(userData);
 
   return (
     <>
@@ -45,7 +44,7 @@ export const ListUsersModal = ({ isOpen, onClose }: IUserModalProps) => {
               {isFetching ? (
                 <Spinner />
               ) : (
-                data.map((user: IRegisterUserData) => {
+                data.map((user: IUserData) => {
                   return (
                     <option value={user.id} key={user.id}>
                       {user.first_name}

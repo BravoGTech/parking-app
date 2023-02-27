@@ -1,17 +1,23 @@
-import { Heading } from "@chakra-ui/react";
+import { Heading, Spinner } from "@chakra-ui/react";
 import { useContext } from "react";
-import { SalesContext } from "../../../contexts/SalesContext";
+import { ParkingInfoContext } from "../../../contexts/ParkingInfoContext";
 import { PainelsCard } from "../PainelsCard";
 
 export const PriceByHour = () => {
-  const { priceByHour } = useContext(SalesContext);
+  const { data, isFetching, error } = useContext(ParkingInfoContext);
+  const numberPriceByHour = +data?.priceByHour;
+
   return (
     <PainelsCard title="Valor/Hora" to="">
       <Heading>
-        {priceByHour.toLocaleString("pt-br", {
-          style: "currency",
-          currency: "BRL",
-        })}
+        {isFetching ? (
+          <Spinner />
+        ) : (
+          `${numberPriceByHour.toLocaleString("pt-br", {
+            style: "currency",
+            currency: "BRL",
+          })}`
+        )}
       </Heading>
     </PainelsCard>
   );

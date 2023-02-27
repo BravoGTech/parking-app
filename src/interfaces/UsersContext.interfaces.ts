@@ -1,11 +1,10 @@
 import { AxiosResponse } from "axios";
 import { UseMutateFunction } from "react-query";
+import { IQueryDatas } from "./Context.interfaces";
 import { ISalesData } from "./SalesContext.interfaces";
 
-export interface IUsersContextData {
-  data: any;
-  isFetching: boolean;
-  error: unknown;
+export interface IUsersContextData extends IQueryDatas {
+  data: IUserData[];
   registerUser: UseMutateFunction<
     AxiosResponse<any, any>,
     unknown,
@@ -15,12 +14,25 @@ export interface IUsersContextData {
   deleteUser: UseMutateFunction<void, unknown, IDeleteData, unknown>;
   updateUser: UseMutateFunction<any, unknown, IUpdateUserProps, unknown>;
   listUser: UseMutateFunction<IUserDataWithSales, unknown, string, unknown>;
-  userData: IUserDataWithSales | undefined
+  userData: IUserDataWithSales | undefined;
+}
+
+export interface IUserData {
+  id: string;
+  username: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  isAdmin: boolean;
 }
 
 export interface IUserModalProps {
   isOpen: boolean;
   onClose: () => void;
+}
+
+export interface IUserEditModalProps extends IUserModalProps {
+  userData: IUserDataWithSales | undefined;
 }
 
 export interface IRegisterUserData {
@@ -32,8 +44,8 @@ export interface IRegisterUserData {
   email: string;
 }
 
-export interface IUserDataWithSales extends IRegisterUserData {
-  sales: ISalesData[]
+export interface IUserDataWithSales extends IUserData {
+  sales: ISalesData[];
 }
 
 export interface IRegisterUserProps {
@@ -66,6 +78,6 @@ export interface IUpdateUserProps {
 }
 
 export interface IUpdateFormProps {
-  userId: string;
+  userData: IUserDataWithSales;
   onClose: () => void;
 }
