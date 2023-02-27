@@ -22,7 +22,7 @@ export const OccupationPainel = () => {
       <Heading size={"md"}>
         {isFetching ? <Spinner /> : newList?.length} veículo(s)
       </Heading>
-      {!!error && <p>Algo errado</p>}
+      {!!error && <p>Carregando...</p>}
     </PainelsCard>
   );
 };

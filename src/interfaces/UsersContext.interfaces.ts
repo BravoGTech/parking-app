@@ -32,7 +32,7 @@ export interface IUserModalProps {
 }
 
 export interface IUserEditModalProps extends IUserModalProps {
-  userData: IUserDataWithSales | undefined;
+  userId: string;
 }
 
 export interface IRegisterUserData {

@@ -8,13 +8,14 @@ export const LoginPage = () => {
       bgGradient={"linear-gradient(139deg, #5E5D7B 31%, #80506F 100%)"}
       maxW="10xl"
       h={{ base: "100vh", md: "100vh" }}
-      p="2rem 1rem"
+      overflowY={"auto"}
     >
       <Flex flexDir={"column"} justify="center" align={"center"}>
         <Flex
           maxW={{ base: "300px", md: "700px" }}
-          w="80%"
+          w="90%"
           m="0 auto"
+          p={{ base: "0", md: "1rem" }}
           flexDir={{ base: "column", md: "row" }}
         >
           <Box w="100%" pos="relative">

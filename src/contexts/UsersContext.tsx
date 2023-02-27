@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import { toast } from "react-toastify";
 import { IContextProvider } from "../interfaces/Context.interfaces";
@@ -38,7 +38,6 @@ export const UsersProvider = ({ children }: IContextProvider) => {
     {
       onSuccess: (response) => {
         setUserData(response);
-        refetch();
       },
       onError: () => {
         toast.error("Usuario não encontrado");
@@ -56,7 +55,7 @@ export const UsersProvider = ({ children }: IContextProvider) => {
       });
     },
     {
-      onSuccess: (response) => {
+      onSuccess: (_) => {
         toast.success("Usuário cadastrado com sucesso");
         refetch();
       },

@@ -49,12 +49,12 @@ export const LoginForm = () => {
   };
 
   return (
-    <Container display={"flex"} flexDir="column" gap="0rem" p="0 2rem">
+    <Container display={"flex"} flexDir="column" p="0 2rem">
       <Heading pt="1rem">Login</Heading>
       <Flex
         as="form"
         flexDir={"column"}
-        gap="1rem"
+        gap="0.5rem"
         p="1rem 0"
         onSubmit={handleSubmit(onSubmit)}
       >
