@@ -1,20 +1,27 @@
 import { Flex, Heading, Spinner, useDisclosure } from "@chakra-ui/react";
 import { useContext, useEffect, useState } from "react";
-import { SalesContext } from "../../../contexts/SalesContext";
-import { ISalesData } from "../../../interfaces/SalesContext.interfaces";
 import { PageContainer } from "../../PageContainer";
 import { Painel } from "../Painel";
 import { PainelsCard } from "../PainelsCard";
 import { FaCarAlt } from "react-icons/fa";
 import { TbParking } from "react-icons/tb";
-import { EditPakringSlotsModal } from "../../Modals/EditParkingSlots";
+import { SpotContext } from "../../../contexts/SpotContext";
+import { ISpotData } from "../../../interfaces/SpotContext.interfaces";
+import { CreateParkingSlotsModal } from "../../Modals/CreateParkingSlots";
+import { EditParkingModal } from "../../Modals/EditParkingSlots";
 
 export const ParkingSlotManagementContent = () => {
-  const { data, isFetching, error } = useContext(SalesContext);
-  const [parkingSlot, setParkingSlot] = useState(0);
-  const [usedParkingSlot, setUsedParkingSlot] = useState(0);
-  const [newList, setNewList] = useState<ISalesData[] | undefined | null>(null);
-  const [color, setColor] = useState("");
+  const { data, isFetching, error } = useContext(SpotContext);
+
+  const [freeSlot, setFreeSlot] = useState<ISpotData[]>();
+
+  useEffect(() => {
+    const handleOccupation = (data: ISpotData[] | undefined) => {
+      const newFilter = data?.filter((elem) => elem.isAvaliable == true);
+      setFreeSlot(newFilter);
+    };
+    handleOccupation(data);
+  }, [data]);
 
   const {
     isOpen: isOpenSlots,
@@ -22,61 +29,44 @@ export const ParkingSlotManagementContent = () => {
     onClose: onCloseSlots,
   } = useDisclosure();
   const {
+    isOpen: isOpenEditSlot,
+    onOpen: onOpenEditSlot,
+    onClose: onCloseEditSlot,
+  } = useDisclosure();
+  const {
+    isOpen: isOpenDeleteSlot,
+    onOpen: onOpenDeleteSlot,
+    onClose: onCloseDeleteSlot,
+  } = useDisclosure();
+  const {
     isOpen: isOpenVehiclesList,
     onOpen: onOpenVehiclesList,
     onClose: onCloseVehiclesList,
   } = useDisclosure();
 
-  useEffect(() => {
-    const handleParkingSlots = (data: ISalesData[] | []) => {
-      const newFilter: ISalesData[] | [] = data?.filter(
-        (elem) => elem.end_hour === null
-      );
-      setNewList(newFilter);
-      if (newFilter) {
-        setUsedParkingSlot(parkingSlot - newFilter.length);
-      }
-    };
-    handleParkingSlots(data);
-    if (newList) {
-      handleColors(usedParkingSlot);
-    }
-  }, [data, color, parkingSlot, usedParkingSlot]);
-
-  const handleColors = (parkingSlots: number) => {
-    if (parkingSlots >= 20) {
-      setColor("green");
-    } else if (parkingSlots >= 10 && parkingSlots <= 20) {
-      setColor("yellow");
-    } else {
-      setColor("red");
-    }
-  };
-
-  if (!newList) {
-    return <Spinner />;
-  }
-
   return (
     <>
       <PageContainer title="Gerenciamento de Vagas">
-        <Flex gap="2rem">
+        <Flex
+          gap="2rem"
+          wrap={"wrap"}
+          align="center"
+          p="0.5rem"
+          justify={"center"}
+        >
           <PainelsCard title="Total Vagas">
             <Heading size={"sm"}>
-              {isFetching ? <Spinner /> : parkingSlot} Vagas
+              {isFetching ? <Spinner /> : data?.length} Vagas
             </Heading>
           </PainelsCard>
-          <PainelsCard title="Vagas Disponiveis" color={color}>
+          <PainelsCard title="Vagas Disponiveis">
             <Heading size={"sm"}>
-              {isFetching && !newList ? (
-                <Spinner />
-              ) : (
-                parkingSlot - newList.length
-              )}{" "}
-              Vagas Disponiveis
+              {isFetching && data ? <Spinner /> : freeSlot?.length} Vagas
+              Disponiveis
             </Heading>
           </PainelsCard>
         </Flex>
+
         <Flex
           flexDir={{ base: "row", md: "row" }}
           wrap={{ base: "wrap" }}
@@ -87,10 +77,26 @@ export const ParkingSlotManagementContent = () => {
           <Painel
             onOpen={onOpenSlots}
             icon={TbParking}
-            bgColor="gray"
+            bgColor="green"
             color="white"
           >
-            Alterar Total de Vagas
+            Criar Vaga
+          </Painel>
+          <Painel
+            onOpen={onOpenEditSlot}
+            icon={TbParking}
+            bgColor="yellow"
+            color="black"
+          >
+            Editar Vaga
+          </Painel>
+          <Painel
+            onOpen={onOpenVehiclesList}
+            icon={TbParking}
+            bgColor="red"
+            color="white"
+          >
+            Apagar Vaga
           </Painel>
           <Painel
             onOpen={onOpenVehiclesList}
@@ -102,11 +108,8 @@ export const ParkingSlotManagementContent = () => {
           </Painel>
         </Flex>
       </PageContainer>
-      <EditPakringSlotsModal
-        isOpen={isOpenSlots}
-        onClose={onCloseSlots}
-        setParkingSlot={setParkingSlot}
-      />
+      <EditParkingModal isOpen={isOpenEditSlot} onClose={onCloseEditSlot} />
+      <CreateParkingSlotsModal onClose={onCloseSlots} isOpen={isOpenSlots} />
     </>
   );
 };

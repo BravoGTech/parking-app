@@ -9,11 +9,13 @@ export interface IPageContainerProps {
 export const PageContainer = ({ children, title }: IPageContainerProps) => {
   return (
     <Container
-      maxW="8xl"
+      maxW={"5xl"}
       display="flex"
       flexDir={"column"}
       alignItems="center"
-      ml={{ base: "3rem", md: 0 }}
+      overflowY="auto"
+      p="0"
+      h={{ base: "100vh" }}
     >
       <Heading mt="2rem" size={"2xl"} textAlign="center">
         {title}

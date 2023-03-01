@@ -19,7 +19,6 @@ export interface IPanelCard {
 }
 
 export const PainelsCard = ({ title, children, onOpen, color }: IPanelCard) => {
-  const navigate = useNavigate();
   return (
     <Card
       flexDir={"column"}
@@ -27,6 +26,7 @@ export const PainelsCard = ({ title, children, onOpen, color }: IPanelCard) => {
       align={"center"}
       justify="center"
       p="2rem"
+      minW="180px"
       w="250px"
       h="150px"
       textAlign={"center"}

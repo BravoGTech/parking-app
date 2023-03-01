@@ -30,6 +30,10 @@ export const Painel = ({
       _hover={{ bg: bgColor, color: color }}
       transition="0.3s"
       onClick={onOpen}
+      minW="130px"
+      minH="130px"
+      alignContent={"center"}
+      justify="center"
     >
       <Icon size="35px" />
       <Text textAlign={"center"}>{children}</Text>

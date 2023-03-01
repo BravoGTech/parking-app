@@ -14,8 +14,6 @@ export const Header = () => {
         color="white"
         flexDir={"column"}
         h="100vh"
-        pos={{ base: "fixed", md: "inherit" }}
-        zIndex="200"
       >
         <MenuToggle isOpen={isOpen} onToggle={onToggle} />
         <NavLinks isOpen={isOpen} onToggle={onToggle} />

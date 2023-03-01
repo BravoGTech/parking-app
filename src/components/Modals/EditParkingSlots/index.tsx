@@ -1,6 +1,5 @@
 import {
   Button,
-  Input,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -8,45 +7,64 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Text,
+  Select,
+  Spinner,
+  useDisclosure,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { SpotContext } from "../../../contexts/SpotContext";
 
+import { ISpotData } from "../../../interfaces/SpotContext.interfaces";
 import { IUserModalProps } from "../../../interfaces/UsersContext.interfaces";
+import { EditParkingForm } from "./EditForm";
 
-interface editParkingProps extends IUserModalProps {
-  setParkingSlot: React.Dispatch<React.SetStateAction<number>>;
-}
+export const EditParkingModal = ({ isOpen, onClose }: IUserModalProps) => {
+  const { data, isFetching } = useContext(SpotContext);
 
-export const EditPakringSlotsModal = ({
-  isOpen,
-  onClose,
-  setParkingSlot,
-}: editParkingProps) => {
-  const [newParkingSlots, setNewParkingSlot] = useState(0);
+  const { isOpen: FormOpen, onOpen, onClose: formClose } = useDisclosure();
 
-  const handleChange = () => {
-    setParkingSlot(newParkingSlots);
-    onClose();
-  };
+  const [number, setNumber] = useState<string>("default");
+
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Alterar Capacidade Total do Estacionamento</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Text>Digite a capacidade máxima de vagas</Text>
-            <Input onChange={(e) => setNewParkingSlot(+e.target.value)} />
-          </ModalBody>
-          <ModalFooter>
-            <Button onClick={handleChange} colorScheme="blue">
-              Alterar
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+      {isFetching ? (
+        <Spinner />
+      ) : (
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Editar Vaga</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody display={"flex"} flexDir="column" gap="1rem">
+              <Select onChange={(e) => setNumber(e.target.value)}>
+                <option value="default">Selecione a Vaga</option>
+                {isFetching ? (
+                  <Spinner />
+                ) : (
+                  data.map((spot: ISpotData) => {
+                    return (
+                      <option key={spot.id} value={spot.number}>
+                        {spot.number}
+                      </option>
+                    );
+                  })
+                )}
+              </Select>
+            </ModalBody>
+            <ModalFooter>
+              <Button
+                isDisabled={number === "default"}
+                onClick={onOpen}
+                colorScheme="blue"
+              >
+                Visualizar
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      )}
+
+      <EditParkingForm number={number} isOpen={FormOpen} onClose={formClose} />
     </>
   );
 };
