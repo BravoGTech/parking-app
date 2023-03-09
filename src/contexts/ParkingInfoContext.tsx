@@ -28,6 +28,7 @@ export const ParkingInfoProvider = ({ children }: IContextProvider) => {
       const newValue = {
         priceByHour: value,
       };
+
       return await api.patch(`/parking-info/1/`, newValue).then((response) => {
         onClose();
         return response.data;

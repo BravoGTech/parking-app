@@ -9,6 +9,8 @@ import { SpotContext } from "../../../contexts/SpotContext";
 import { ISpotData } from "../../../interfaces/SpotContext.interfaces";
 import { CreateParkingSlotsModal } from "../../Modals/CreateParkingSlots";
 import { EditParkingModal } from "../../Modals/EditParkingSlots";
+import { DeleteParkingModal } from "../../Modals/DeleteParkingSlot";
+import { ListParkingSlotsModal } from "../../Modals/ListParkingSlots";
 
 export const ParkingSlotManagementContent = () => {
   const { data, isFetching, error } = useContext(SpotContext);
@@ -91,7 +93,7 @@ export const ParkingSlotManagementContent = () => {
             Editar Vaga
           </Painel>
           <Painel
-            onOpen={onOpenVehiclesList}
+            onOpen={onOpenDeleteSlot}
             icon={TbParking}
             bgColor="red"
             color="white"
@@ -110,6 +112,14 @@ export const ParkingSlotManagementContent = () => {
       </PageContainer>
       <EditParkingModal isOpen={isOpenEditSlot} onClose={onCloseEditSlot} />
       <CreateParkingSlotsModal onClose={onCloseSlots} isOpen={isOpenSlots} />
+      <DeleteParkingModal
+        isOpen={isOpenDeleteSlot}
+        onClose={onCloseDeleteSlot}
+      />
+      <ListParkingSlotsModal
+        isOpen={isOpenVehiclesList}
+        onClose={onCloseVehiclesList}
+      />
     </>
   );
 };

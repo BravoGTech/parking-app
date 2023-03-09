@@ -3,6 +3,7 @@ import { useMutation, useQuery } from "react-query";
 import { toast } from "react-toastify";
 import { IContextProvider } from "../interfaces/Context.interfaces";
 import {
+  IDeleteForm,
   IRegisterSpot,
   ISpotContextData,
   ISpotData,
@@ -21,9 +22,10 @@ export const SpotContextProvider = ({ children }: IContextProvider) => {
   const { data, isFetching, error, refetch } = useQuery("spot", async () => {
     const token = localStorage.getItem("@Parking:Token");
     api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-
-    const response = await api.get("/parking-slot");
-    return response.data;
+    if (token) {
+      const response = await api.get("/parking-slot");
+      return response.data;
+    }
   });
 
   const { mutate: registerSpot } = useMutation(
@@ -43,6 +45,7 @@ export const SpotContextProvider = ({ children }: IContextProvider) => {
       onSuccess: (response) => {
         toast.success("Vaga cadastrado com sucesso");
         setSpot(response);
+        refetch();
       },
       onError: () => {
         toast.error("Vaga já registrada");
@@ -102,6 +105,28 @@ export const SpotContextProvider = ({ children }: IContextProvider) => {
     }
   );
 
+  const { mutate: deleteSpot } = useMutation(
+    async ({ spotId }: IDeleteForm): Promise<void> => {
+      const token = localStorage.getItem("@Parking:Token");
+      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+      return await api.delete(`/parking-slot/${spotId}/`).then((response) => {
+        return response.data;
+      });
+    },
+    {
+      onSuccess: (_) => {
+        toast.success("Vaga Atualizada");
+        refetch();
+      },
+      onError: (error: any) => {
+        if (error.response.status === 409) {
+          toast.error("Vaga já existe");
+        }
+      },
+    }
+  );
+
   return (
     <SpotContext.Provider
       value={{
@@ -112,6 +137,7 @@ export const SpotContextProvider = ({ children }: IContextProvider) => {
         listSpot,
         spot,
         updateSpot,
+        deleteSpot,
       }}
     >
       {children}

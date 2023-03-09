@@ -8,10 +8,11 @@ export interface ISpotContextData extends IQueryDatas {
   listSpot: UseMutateFunction<ISpotDataWithSales, unknown, string, unknown>;
   spot: ISpotDataWithSales | undefined;
   updateSpot: UseMutateFunction<ISpotData, unknown, IUpdateForm, unknown>;
+  deleteSpot: UseMutateFunction<void, any, IDeleteForm, unknown>;
 }
 
 export interface ISpotData {
-  id: string;
+  id: string | undefined;
   number: number;
   isAvaliable: boolean;
   parkingInfoId: number;
@@ -35,5 +36,9 @@ export interface ISpotEditForm {
 export interface IUpdateForm {
   number: number | undefined;
   isAvaliable: boolean | undefined;
+  spotId: string | undefined;
+}
+
+export interface IDeleteForm {
   spotId: string | undefined;
 }

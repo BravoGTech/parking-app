@@ -1,17 +1,33 @@
+import { UseMutateFunction } from "react-query";
+import { IUserModalProps } from "./UsersContext.interfaces";
+
 export interface ISalesContext {
   data: any;
   isFetching: boolean;
   error: unknown;
+  checkoutSale: UseMutateFunction<ISalesData, any, ICheckoutData, unknown>;
+  saleData: ISalesData | undefined;
 }
 
 export interface ISalesData {
-  car_plate: string;
-  end_hour: null;
+  carPlate: string;
+  carBrand: string;
+  checkoutTime: Date | null;
   id: string;
-  payment_method: string;
-  price: number | null;
+  paymentMethod: string;
+  price: number;
   price_by_hour: string;
   sale_date: string;
-  start_hour: string;
-  user_id: string;
+  checkinTime: string;
+  userId: string;
+  parkingSlotId: string;
+}
+
+export interface ICheckoutData {
+  saleId: string;
+  paymentMethod?: string;
+}
+
+export interface IConfirmSaleModal extends IUserModalProps {
+  saleData: ISalesData;
 }

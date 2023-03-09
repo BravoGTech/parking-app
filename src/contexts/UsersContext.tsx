@@ -9,6 +9,7 @@ import {
   IUserDataWithSales,
   IUsersContextData,
 } from "../interfaces/UsersContext.interfaces";
+import jwt_decode from "jwt-decode";
 import { api } from "../services/api";
 
 export const UsersContext = createContext<IUsersContextData>(
@@ -17,13 +18,18 @@ export const UsersContext = createContext<IUsersContextData>(
 
 export const UsersProvider = ({ children }: IContextProvider) => {
   const [userData, setUserData] = useState<IUserDataWithSales>();
+  const [userProfilData, setUserProfileData] = useState<IUserDataWithSales>();
 
   const { data, isFetching, error, refetch } = useQuery("users", async () => {
-    const token = localStorage.getItem("@Parking:Token");
-    api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    const token = localStorage.getItem("@Parking:Token") || "";
+    const { isAdmin }: any = jwt_decode(token);
 
-    const response = await api.get("/users");
-    return response.data;
+    if (token && isAdmin) {
+      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+      const response = await api.get("/users");
+      return response.data;
+    }
   });
 
   const { mutate: listUser } = useMutation(
@@ -38,6 +44,25 @@ export const UsersProvider = ({ children }: IContextProvider) => {
     {
       onSuccess: (response) => {
         setUserData(response);
+      },
+      onError: () => {
+        toast.error("Usuario não encontrado");
+      },
+    }
+  );
+
+  const { mutate: userProfile } = useMutation(
+    async (): Promise<IUserDataWithSales> => {
+      const token = localStorage.getItem("@Parking:Token");
+      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+      return await api.get(`/users/profile`).then((response) => {
+        return response.data;
+      });
+    },
+    {
+      onSuccess: (response) => {
+        setUserProfileData(response);
       },
       onError: () => {
         toast.error("Usuario não encontrado");
@@ -89,7 +114,7 @@ export const UsersProvider = ({ children }: IContextProvider) => {
     async ({ data, userId, onClose }: IUpdateUserProps) => {
       const token = localStorage.getItem("@Parking:Token");
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      
+
       return await api.patch(`/users/${userId}/`, data).then((response) => {
         onClose();
         return response.data;
@@ -117,6 +142,8 @@ export const UsersProvider = ({ children }: IContextProvider) => {
         updateUser,
         listUser,
         userData,
+        userProfile,
+        userProfilData,
       }}
     >
       {children}

@@ -12,7 +12,8 @@ export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 export const AuthProvider = ({ children }: IContextProvider) => {
   const [isFetching, setIsFetching] = useState(false);
   const [error, setError] = useState<any | null>(null);
-  const navigate = useNavigate();''
+  const navigate = useNavigate();
+  ("");
 
   const login = async (loginData: ILoginData) => {
     setIsFetching(true);
@@ -23,7 +24,9 @@ export const AuthProvider = ({ children }: IContextProvider) => {
         toast.success("Login Realizado com Sucesso");
         const { isAdmin }: any = jwt_decode(response.data.token);
 
-        isAdmin ? navigate("/controlPainelAdmin") : navigate("/dashboard");
+        isAdmin
+          ? navigate("/controlPainelAdmin")
+          : navigate("/employee/controlPainel");
       })
       .catch((error) => {
         toast.error("Usuário ou Senha Inválidos");

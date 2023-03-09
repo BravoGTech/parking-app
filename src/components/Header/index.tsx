@@ -2,7 +2,11 @@ import { Flex, useDisclosure } from "@chakra-ui/react";
 import { MenuToggle } from "./MenuToggle";
 import { NavLinks } from "./NavLinks";
 
-export const Header = () => {
+export interface IHeaderProps {
+  employee?: boolean;
+}
+
+export const Header = ({ employee }: IHeaderProps) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -16,7 +20,7 @@ export const Header = () => {
         h="100vh"
       >
         <MenuToggle isOpen={isOpen} onToggle={onToggle} />
-        <NavLinks isOpen={isOpen} onToggle={onToggle} />
+        <NavLinks isOpen={isOpen} onToggle={onToggle} employee={employee} />
       </Flex>
     </>
   );

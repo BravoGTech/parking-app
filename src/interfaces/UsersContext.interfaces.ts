@@ -14,7 +14,9 @@ export interface IUsersContextData extends IQueryDatas {
   deleteUser: UseMutateFunction<void, unknown, IDeleteData, unknown>;
   updateUser: UseMutateFunction<any, unknown, IUpdateUserProps, unknown>;
   listUser: UseMutateFunction<IUserDataWithSales, unknown, string, unknown>;
+  userProfile: UseMutateFunction<IUserDataWithSales, unknown, void, unknown>
   userData: IUserDataWithSales | undefined;
+  userProfilData: IUserDataWithSales | undefined
 }
 
 export interface IUserData {
