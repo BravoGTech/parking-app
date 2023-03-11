@@ -1,6 +1,5 @@
 import {
   Button,
-  FormControl,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -16,7 +15,7 @@ import {
 import { useContext, useState } from "react";
 import { UsersContext } from "../../../contexts/UsersContext";
 import {
-  IRegisterUserData,
+  IUserData,
   IUserModalProps,
 } from "../../../interfaces/UsersContext.interfaces";
 import { ConfirmModal } from "./ConfirmModal";
@@ -45,7 +44,7 @@ export const DeleteUserModal = ({ isOpen, onClose }: IUserModalProps) => {
               {isFetching ? (
                 <Spinner />
               ) : (
-                data.map((user: IRegisterUserData) => {
+                data.map((user: IUserData) => {
                   return (
                     <option value={user.id} key={user.id}>
                       {user.first_name}

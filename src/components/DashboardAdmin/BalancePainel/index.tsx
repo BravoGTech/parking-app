@@ -23,7 +23,7 @@ export const BalancePainel = () => {
     // Percorra cada objeto de venda e calcule o total de vendas
     filteredData?.forEach((sale) => {
       // Converte a data de venda para um objeto "moment"
-      const saleMoment = moment(sale.end_hour);
+      const saleMoment = moment(sale.checkoutTime);
 
       // Adiciona o preço da venda ao total diário, semanal e mensal
       if (dailyTotal !== null && sale.price !== null) {
