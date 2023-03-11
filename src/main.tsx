@@ -4,13 +4,13 @@ import { ToastContainer } from "react-toastify";
 import { Providers } from "./providers";
 import { queryClient } from "./services/queryClient";
 import { theme } from "./styles/theme";
-import { HashRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { QueryClientProvider } from "react-query";
 import "react-toastify/dist/ReactToastify.css";
 import App from "./App";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <HashRouter>
+  <BrowserRouter>
     <ChakraProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
         <Providers>
@@ -30,5 +30,5 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         </Providers>
       </QueryClientProvider>
     </ChakraProvider>
-  </HashRouter>
+  </BrowserRouter>
 );

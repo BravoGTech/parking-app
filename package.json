@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "router": " react-scripts build --base-href ./",
     "preview": "vite preview"
   },
   "dependencies": {
