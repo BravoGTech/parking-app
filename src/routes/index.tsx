@@ -11,13 +11,13 @@ export const Routers = () => {
     <Routes>
       <Route path="/" element={<LoginPage />} />
       <Route path="/controlPainelAdmin" element={<ControlPainelAdminPage />} />
-      <Route path="/admin/worksManagement" element={<WorksManagement />} />
+      <Route path="/worksManagementAdmin" element={<WorksManagement />} />
       <Route
-        path="/admin/parkingManagement"
+        path="/parkingManagementAdmin"
         element={<ParkingSlotsManagementPage />}
       />
       <Route
-        path="/employee/controlPainel"
+        path="controlPainelEmployee"
         element={<ControlPainelEmployee />}
       />
     </Routes>

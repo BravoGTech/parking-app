@@ -81,7 +81,7 @@ export const NavLinks = ({ isOpen, onToggle, employee }: INavLinksProps) => {
             <MenuItem
               onToggle={onToggle}
               isOpen={isOpen}
-              to="/controlPainelAdmin"
+              to="/controlPainelEmployee"
               activeLink={activeLink}
               handleClick={handleClick}
             >
@@ -90,7 +90,7 @@ export const NavLinks = ({ isOpen, onToggle, employee }: INavLinksProps) => {
             <MenuItem
               onToggle={onToggle}
               isOpen={isOpen}
-              to="/admin/parkingManagement"
+              to=""
               activeLink={activeLink}
               handleClick={handleClick}
             >
@@ -163,7 +163,7 @@ export const NavLinks = ({ isOpen, onToggle, employee }: INavLinksProps) => {
             <MenuItem
               onToggle={onToggle}
               isOpen={isOpen}
-              to="/admin/parkingManagement"
+              to="/parkingManagementAdmin"
               activeLink={activeLink}
               handleClick={handleClick}
             >
@@ -172,7 +172,7 @@ export const NavLinks = ({ isOpen, onToggle, employee }: INavLinksProps) => {
             <MenuItem
               onToggle={onToggle}
               isOpen={isOpen}
-              to="/admin/worksManagement"
+              to="/worksManagementAdmin"
               activeLink={activeLink}
               handleClick={handleClick}
             >
@@ -184,7 +184,7 @@ export const NavLinks = ({ isOpen, onToggle, employee }: INavLinksProps) => {
             <MenuItem
               onToggle={onToggle}
               isOpen={isOpen}
-              to="reports"
+              to=""
               activeLink={activeLink}
               handleClick={handleClick}
             >
