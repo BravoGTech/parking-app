@@ -10,14 +10,14 @@ export const Routers = () => {
   return (
     <Routes>
       <Route path="/" element={<LoginPage />} />
-      <Route path="controlPainelAdmin" element={<ControlPainelAdminPage />} />
-      <Route path="admin/worksManagement" element={<WorksManagement />} />
+      <Route path="/controlPainelAdmin" element={<ControlPainelAdminPage />} />
+      <Route path="/admin/worksManagement" element={<WorksManagement />} />
       <Route
-        path="admin/parkingManagement"
+        path="/admin/parkingManagement"
         element={<ParkingSlotsManagementPage />}
       />
       <Route
-        path="employee/controlPainel"
+        path="/employee/controlPainel"
         element={<ControlPainelEmployee />}
       />
     </Routes>
