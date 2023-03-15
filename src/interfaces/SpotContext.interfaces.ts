@@ -1,4 +1,9 @@
-import { UseMutateFunction } from "react-query";
+import {
+  QueryObserverResult,
+  RefetchOptions,
+  RefetchQueryFilters,
+  UseMutateFunction,
+} from "react-query";
 import { IQueryDatas } from "./Context.interfaces";
 import { ISalesData } from "./SalesContext.interfaces";
 
@@ -9,6 +14,9 @@ export interface ISpotContextData extends IQueryDatas {
   spot: ISpotDataWithSales | undefined;
   updateSpot: UseMutateFunction<ISpotData, unknown, IUpdateForm, unknown>;
   deleteSpot: UseMutateFunction<void, any, IDeleteForm, unknown>;
+  refetch: <TPageData>(
+    options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined
+  ) => Promise<QueryObserverResult<any, unknown>>;
 }
 
 export interface ISpotData {

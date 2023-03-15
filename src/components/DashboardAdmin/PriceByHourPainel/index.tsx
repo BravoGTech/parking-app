@@ -4,14 +4,18 @@ import { ParkingInfoContext } from "../../../contexts/ParkingInfoContext";
 import { EditPriceModal } from "../../Modals/EditPriceByHour";
 import { PainelsCard } from "../PainelsCard";
 
-export const PriceByHour = () => {
+interface IPriceByHourProps {
+  admin?: boolean;
+}
+
+export const PriceByHour = ({ admin }: IPriceByHourProps) => {
   const { data, isFetching, error } = useContext(ParkingInfoContext);
   const numberPriceByHour = +data?.priceByHour;
   const { isOpen, onClose, onOpen } = useDisclosure();
 
   return (
     <>
-      <PainelsCard title="Valor/Hora" onOpen={onOpen}>
+      <PainelsCard title="Valor/Hora" onOpen={onOpen} admin={admin}>
         <Heading>
           {isFetching ? (
             <Spinner />

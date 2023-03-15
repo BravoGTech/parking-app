@@ -7,7 +7,6 @@ import {
   ModalOverlay,
   Spinner,
   Text,
-  useConst,
 } from "@chakra-ui/react";
 import { useContext, useEffect } from "react";
 import { UsersContext } from "../../../../contexts/UsersContext";

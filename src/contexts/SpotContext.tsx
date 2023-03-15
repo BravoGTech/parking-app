@@ -138,6 +138,7 @@ export const SpotContextProvider = ({ children }: IContextProvider) => {
         spot,
         updateSpot,
         deleteSpot,
+        refetch,
       }}
     >
       {children}

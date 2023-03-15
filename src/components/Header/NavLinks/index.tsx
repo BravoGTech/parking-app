@@ -5,7 +5,6 @@ import {
   Heading,
   Stack,
   Text,
-  Slide,
   Spinner,
 } from "@chakra-ui/react";
 import { useContext, useEffect, useState } from "react";
@@ -74,14 +73,14 @@ export const NavLinks = ({ isOpen, onToggle, employee }: INavLinksProps) => {
           <Stack
             overflowY={"auto"}
             mt="1rem"
-            spacing={{ sm: "1rem" }}
+            spacing={"1rem"}
             direction={["column"]}
             w="100%"
           >
             <MenuItem
               onToggle={onToggle}
               isOpen={isOpen}
-              to="/controlPainelEmployee"
+              to="/employee/controlPainel"
               activeLink={activeLink}
               handleClick={handleClick}
             >
@@ -90,7 +89,7 @@ export const NavLinks = ({ isOpen, onToggle, employee }: INavLinksProps) => {
             <MenuItem
               onToggle={onToggle}
               isOpen={isOpen}
-              to=""
+              to="/employee/parkingSlot"
               activeLink={activeLink}
               handleClick={handleClick}
             >

@@ -7,6 +7,9 @@ export interface ISalesContext {
   error: unknown;
   checkoutSale: UseMutateFunction<ISalesData, any, ICheckoutData, unknown>;
   saleData: ISalesData | undefined;
+  checkinSale: UseMutateFunction<ISalesData, any, ICheckinMutation, unknown>;
+  listSale: UseMutateFunction<ISalesData, any, ISaleProfileMutation, unknown>;
+  saleProfileData: ISalesData | undefined
 }
 
 export interface ISalesData {
@@ -21,6 +24,20 @@ export interface ISalesData {
   checkinTime: string;
   userId: string;
   parkingSlotId: string;
+}
+
+export interface ICheckinData {
+  carPlate: string;
+  carBrand: string;
+  spotNumber: number;
+}
+
+export interface ICheckinMutation {
+  data: ICheckinData;
+}
+
+export interface ISaleProfileMutation {
+  saleId: string;
 }
 
 export interface ICheckoutData {

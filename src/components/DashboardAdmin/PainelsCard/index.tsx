@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Card,
   CardBody,
   CardHeader,
@@ -9,16 +8,22 @@ import {
 } from "@chakra-ui/react";
 import { ReactNode } from "react";
 import { BsGear } from "react-icons/bs";
-import { useNavigate } from "react-router-dom";
 
 export interface IPanelCard {
   title: string;
   children: ReactNode;
   onOpen?: () => void;
   color?: string;
+  admin?: boolean;
 }
 
-export const PainelsCard = ({ title, children, onOpen, color }: IPanelCard) => {
+export const PainelsCard = ({
+  title,
+  children,
+  onOpen,
+  color,
+  admin,
+}: IPanelCard) => {
   return (
     <Card
       flexDir={"column"}
@@ -39,7 +44,7 @@ export const PainelsCard = ({ title, children, onOpen, color }: IPanelCard) => {
         color === "green" ? "white" : color === "yellow" ? "black" : "black"
       }
     >
-      {onOpen && (
+      {onOpen && admin && (
         <Box
           onClick={onOpen}
           pos={"absolute"}

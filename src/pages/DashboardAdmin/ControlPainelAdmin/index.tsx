@@ -29,7 +29,7 @@ export const ControlPainelAdminPage = () => {
         <Flex mt="2rem" wrap={"wrap"} gap="2rem" justify={"center"}>
           <OccupationPainel />
           <BalancePainel />
-          <PriceByHour />
+          <PriceByHour admin />
         </Flex>
       </Container>
     </Flex>

@@ -3,6 +3,7 @@ import { ControlPainelAdminPage } from "../pages/DashboardAdmin/ControlPainelAdm
 import { ParkingSlotsManagementPage } from "../pages/DashboardAdmin/ParkingSlotsManagement";
 import { WorksManagement } from "../pages/DashboardAdmin/WorkersManagment";
 import { ControlPainelEmployee } from "../pages/DashboardEmployee/ControlPainelEmployee";
+import { ParkingSlotsPage } from "../pages/DashboardEmployee/ParkingSlotsManagement";
 
 import { LoginPage } from "../pages/Login";
 
@@ -17,9 +18,10 @@ export const Routers = () => {
         element={<ParkingSlotsManagementPage />}
       />
       <Route
-        path="controlPainelEmployee"
+        path="/employee/controlPainel"
         element={<ControlPainelEmployee />}
       />
+      <Route path="/employee/parkingSlot" element={<ParkingSlotsPage />} />
     </Routes>
   );
 };

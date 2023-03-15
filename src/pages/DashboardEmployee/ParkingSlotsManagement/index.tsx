@@ -1,12 +1,9 @@
 import { Container, Flex, Heading } from "@chakra-ui/react";
 import { Navigate } from "react-router-dom";
-
-import { OccupationPainel } from "../../../components/DashboardAdmin/OccupationPainel";
-import { PriceByHour } from "../../../components/DashboardAdmin/PriceByHourPainel";
-
+import { ParkingSlotsEmployee } from "../../../components/DashboardEmployee/ParkingManagement";
 import { Header } from "../../../components/Header";
 
-export const ControlPainelEmployee = () => {
+export const ParkingSlotsPage = () => {
   const token = localStorage.getItem("@Parking:Token");
 
   if (!token) {
@@ -24,12 +21,8 @@ export const ControlPainelEmployee = () => {
         overflowY="auto"
         h={{ base: "100vh", md: "100%" }}
       >
-        <Heading size={"3xl"}>Painel de Controle</Heading>
-        <Flex mt="2rem" wrap={"wrap"} gap="2rem" justify={"center"}>
-          <OccupationPainel />
-
-          <PriceByHour />
-        </Flex>
+        <Heading size={"3xl"}>Vagas</Heading>
+        <ParkingSlotsEmployee />
       </Container>
     </Flex>
   );
