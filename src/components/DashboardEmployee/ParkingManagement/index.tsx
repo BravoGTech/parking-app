@@ -32,7 +32,11 @@ export const ParkingSlotsEmployee = () => {
     onOpen: onOpenCheckin,
   } = useDisclosure();
 
-  const filteredData = data.filter((item) =>
+  if (!data) {
+    return <h1>...carregando</h1>;
+  }
+
+  const filteredData = data?.filter((item) =>
     item.sales.some((sale) =>
       sale.carPlate.toLowerCase().includes(input.toLowerCase())
     )
