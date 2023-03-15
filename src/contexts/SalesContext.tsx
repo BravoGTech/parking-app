@@ -32,7 +32,6 @@ export const SalesProvider = ({ children }: IContextProvider) => {
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
       return await api.post(`/sales/`, data).then((response) => {
-        console.log(response.data);
         return response.data;
       });
     },
@@ -56,7 +55,6 @@ export const SalesProvider = ({ children }: IContextProvider) => {
       return await api
         .patch(`/sales/${saleId}/`, { paymentMethod })
         .then((response) => {
-          console.log(response.data);
           return response.data;
         });
     },
@@ -78,7 +76,6 @@ export const SalesProvider = ({ children }: IContextProvider) => {
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
       return await api.get(`/sales/${saleId}/`).then((response) => {
-        console.log(response.data);
         return response.data;
       });
     },

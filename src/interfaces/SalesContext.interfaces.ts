@@ -9,7 +9,7 @@ export interface ISalesContext {
   saleData: ISalesData | undefined;
   checkinSale: UseMutateFunction<ISalesData, any, ICheckinMutation, unknown>;
   listSale: UseMutateFunction<ISalesData, any, ISaleProfileMutation, unknown>;
-  saleProfileData: ISalesData | undefined
+  saleProfileData: ISalesData | undefined;
 }
 
 export interface ISalesData {
@@ -43,8 +43,4 @@ export interface ISaleProfileMutation {
 export interface ICheckoutData {
   saleId: string;
   paymentMethod?: string;
-}
-
-export interface IConfirmSaleModal extends IUserModalProps {
-  saleData: ISalesData;
 }

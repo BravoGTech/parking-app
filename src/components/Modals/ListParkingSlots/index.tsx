@@ -9,7 +9,7 @@ import {
   Spinner,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { SpotContext } from "../../../contexts/SpotContext";
 
 import { IUserModalProps } from "../../../interfaces/UsersContext.interfaces";
@@ -136,11 +136,7 @@ export const ListParkingSlotsModal = ({ isOpen, onClose }: IUserModalProps) => {
         </Modal>
       )}
       {saleData && (
-        <ConfirmSale
-          isOpen={isOpenConfirm}
-          onClose={onCloseConfirm}
-          saleData={saleData}
-        />
+        <ConfirmSale isOpen={isOpenConfirm} onClose={onCloseConfirm} />
       )}
     </>
   );

@@ -66,7 +66,6 @@ export const SpotContextProvider = ({ children }: IContextProvider) => {
         setSpot(response);
       },
       onError: (error) => {
-        console.log(error);
         toast.error("Vaga não encontrada");
       },
     }
