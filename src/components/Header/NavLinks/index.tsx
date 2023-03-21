@@ -147,9 +147,6 @@ export const NavLinks = ({ isOpen, onToggle, employee }: INavLinksProps) => {
             direction={["column"]}
             w="100%"
           >
-            // Uma visão geral do estacionamento, incluindo a quantidade de
-            vagas disponíveis, vagas ocupadas, receita e outras métricas
-            importantes
             <MenuItem
               onToggle={onToggle}
               isOpen={isOpen}
@@ -177,13 +174,10 @@ export const NavLinks = ({ isOpen, onToggle, employee }: INavLinksProps) => {
             >
               Gerenciamento de Funcionarios
             </MenuItem>
-            //Uma seção que permita aos administradores gerar relatórios
-            detalhados sobre o desempenho do estacionamento, incluindo
-            estatísticas de tráfego e receita.
             <MenuItem
               onToggle={onToggle}
               isOpen={isOpen}
-              to=""
+              to="/reportsAdmin"
               activeLink={activeLink}
               handleClick={handleClick}
             >
