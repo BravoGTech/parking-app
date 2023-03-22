@@ -1,5 +1,5 @@
+import { ISpotData } from "./SpotContext.interfaces";
 import { UseMutateFunction } from "react-query";
-import { IUserModalProps } from "./UsersContext.interfaces";
 
 export interface ISalesContext {
   data: any;
@@ -24,6 +24,11 @@ export interface ISalesData {
   checkinTime: string;
   userId: string;
   parkingSlotId: string;
+  parkingSlot: ISpotData;
+}
+
+export interface ISalesReportData extends ISalesData {
+  parkingTime: number;
 }
 
 export interface ICheckinData {
