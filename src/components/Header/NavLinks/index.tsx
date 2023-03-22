@@ -98,7 +98,7 @@ export const NavLinks = ({ isOpen, onToggle, employee }: INavLinksProps) => {
           </Stack>
           <Flex mt="1rem" flexDir={"column"} gap="1rem">
             <Divider />
-            <Flex align={"center"} justify="space-evenly">
+            <Flex w="100%">
               <Flex
                 transition={"0.3s"}
                 cursor={"pointer"}
@@ -106,11 +106,12 @@ export const NavLinks = ({ isOpen, onToggle, employee }: INavLinksProps) => {
                 p="0.5rem 1rem"
                 gap="1rem"
                 onClick={logout}
+                borderRadius="8px"
               >
                 <BiLogOut size="24px" />
                 <Text>Sair</Text>
               </Flex>
-              <Flex
+              {/* <Flex
                 transition={"0.3s"}
                 cursor={"pointer"}
                 _hover={{ bg: "gray" }}
@@ -119,7 +120,7 @@ export const NavLinks = ({ isOpen, onToggle, employee }: INavLinksProps) => {
               >
                 <BsGear size="24px" />
                 <Text>Configurações</Text>
-              </Flex>
+              </Flex> */}
             </Flex>
           </Flex>
         </Flex>
@@ -194,11 +195,13 @@ export const NavLinks = ({ isOpen, onToggle, employee }: INavLinksProps) => {
                 p="0.5rem 1rem"
                 gap="1rem"
                 onClick={logout}
+                borderRadius="2px"
+                w="100%"
               >
                 <BiLogOut size="24px" />
                 <Text>Sair</Text>
               </Flex>
-              <Flex
+              {/* <Flex
                 transition={"0.3s"}
                 cursor={"pointer"}
                 _hover={{ bg: "gray" }}
@@ -207,7 +210,7 @@ export const NavLinks = ({ isOpen, onToggle, employee }: INavLinksProps) => {
               >
                 <BsGear size="24px" />
                 <Text>Configurações</Text>
-              </Flex>
+              </Flex> */}
             </Flex>
           </Flex>
         </Flex>

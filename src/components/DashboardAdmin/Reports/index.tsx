@@ -1,9 +1,7 @@
 import { Container, Flex, Heading, Select, Spinner } from "@chakra-ui/react";
 import { useContext, useState } from "react";
 import { UsersContext } from "../../../contexts/UsersContext";
-import { PageContainer } from "../../PageContainer";
 import { UserReport } from "./userReport";
-
 
 export const Reports = () => {
   const { data, isFetching } = useContext(UsersContext);
