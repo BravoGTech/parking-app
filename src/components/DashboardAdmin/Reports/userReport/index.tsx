@@ -39,7 +39,7 @@ export const UserReport = ({ id }: IUserReport) => {
 
   useEffect(() => {
     listUser(id);
-    cleanFilter()
+    cleanFilter();
   }, [id]);
 
   const handleSum = () => {
@@ -73,7 +73,7 @@ export const UserReport = ({ id }: IUserReport) => {
 
     const parkingTime = checkout.getTime() - checkin.getTime();
 
-    const parkingTimeInHour = Math.ceil(parkingTime / 60 / 60);
+    const parkingTimeInHour = Math.ceil(parkingTime / (1000 * 60 * 60));
 
     const newPrice = +sale.price;
 
@@ -195,6 +195,7 @@ export const UserReport = ({ id }: IUserReport) => {
                 {filtredList
                   ? filtredList.map((sale) => {
                       const newData = dataTreatment(sale);
+
                       soma = +newData.price;
                       return (
                         <Tr key={newData.id}>
